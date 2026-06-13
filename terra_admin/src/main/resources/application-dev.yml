@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+# API 接口配置
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'admin'
+      display-name: '系统管理'
+      paths-to-match: '/**'
+      packages-to-scan: com.ziheng.system
+
+# knife4j的增强配置
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
