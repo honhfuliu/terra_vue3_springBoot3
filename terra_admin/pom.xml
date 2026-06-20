@@ -20,11 +20,6 @@
     <dependencies>
         <dependency>
             <groupId>com.ziheng</groupId>
-            <artifactId>terra_framework</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ziheng</groupId>
             <artifactId>terra_system</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -42,6 +37,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-3-starter</artifactId>
         </dependency>
+
+
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
+        </dependency>
+
 
     </dependencies>
 

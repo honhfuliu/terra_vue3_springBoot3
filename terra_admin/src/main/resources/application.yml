@@ -3,4 +3,3 @@ spring:
     name: terra-admin
   profiles:
     active: druid, dev
-

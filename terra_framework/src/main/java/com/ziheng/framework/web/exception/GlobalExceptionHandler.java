@@ -5,6 +5,8 @@ import com.ziheng.common.core.enums.ResultCode;
 import com.ziheng.common.exception.BusinessException;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,8 +19,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @ResponseBody
 @Hidden
 public class GlobalExceptionHandler {
+    private static final Logger log =
+            LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(BusinessException.class)
     public R<Void> handleBusinessException(BusinessException ex) {
+        log.error("业务异常", ex);
         return R.fail(ex.getCode(), ex.getMessage());
     }
 
@@ -30,11 +35,13 @@ public class GlobalExceptionHandler {
             HttpMessageNotReadableException.class
     })
     public R<Void> handleBadRequestException(Exception ex) {
+        log.error("业务异常", ex);
         return R.fail(ResultCode.BAD_REQUEST.getCode(), resolveValidationMessage(ex));
     }
 
     @ExceptionHandler(Exception.class)
     public R<Void> handleException(Exception ex) {
+        log.error("业务异常", ex);
         return R.fail(ResultCode.INTERNAL_ERROR);
     }
 
