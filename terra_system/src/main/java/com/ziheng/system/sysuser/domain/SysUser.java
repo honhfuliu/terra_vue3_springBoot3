@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * 系统用户表
  * @TableName sys_user
  */
+@Data
 @TableName(value ="sys_user")
 public class SysUser implements Serializable {
     /**
@@ -51,9 +53,19 @@ public class SysUser implements Serializable {
     private String phone;
 
     /**
+     * 性别 0未知 1男 2女
+     */
+    private String sex;
+
+    /**
      * 状态: 0禁用 1正常
      */
-    private Integer status;
+    private String status;
+
+    /**
+     * 备注
+     */
+    private String remark;
 
     /**
      * 创建时间
@@ -65,148 +77,19 @@ public class SysUser implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 部门ID
+     */
+    private Long deptId;
+    /**
+     * 删除标志 0存在 1删除
+     */
+    private String delFlag;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户ID
-     */
-    public Long getUserId() {
-        return userId;
-    }
 
-    /**
-     * 用户ID
-     */
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * 用户名
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * 用户名
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * 用户昵称
-     */
-    public String getNickname() {
-        return nickname;
-    }
-
-    /**
-     * 用户昵称
-     */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    /**
-     * 密码
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * 密码
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * 盐值
-     */
-    public String getSalt() {
-        return salt;
-    }
-
-    /**
-     * 盐值
-     */
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    /**
-     * 邮箱
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * 邮箱
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * 手机号
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * 手机号
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    /**
-     * 状态: 0禁用 1正常
-     */
-    public Integer getStatus() {
-        return status;
-    }
-
-    /**
-     * 状态: 0禁用 1正常
-     */
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * 更新时间
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * 更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
     @Override
     public boolean equals(Object that) {
@@ -227,9 +110,12 @@ public class SysUser implements Serializable {
             && (this.getSalt() == null ? other.getSalt() == null : this.getSalt().equals(other.getSalt()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
+            && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getDeptId() == null ? other.getDeptId() == null : this.getDeptId().equals(other.getDeptId()));
     }
 
     @Override
@@ -243,9 +129,12 @@ public class SysUser implements Serializable {
         result = prime * result + ((getSalt() == null) ? 0 : getSalt().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
+        result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getDeptId() == null) ? 0 : getDeptId().hashCode());
         return result;
     }
 
@@ -262,9 +151,12 @@ public class SysUser implements Serializable {
         sb.append(", salt=").append(salt);
         sb.append(", email=").append(email);
         sb.append(", phone=").append(phone);
+        sb.append(", sex=").append(sex);
         sb.append(", status=").append(status);
+        sb.append(", remark=").append(remark);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", deptId=").append(deptId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

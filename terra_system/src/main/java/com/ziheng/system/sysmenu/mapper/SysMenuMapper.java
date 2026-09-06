@@ -2,7 +2,8 @@ package com.ziheng.system.sysmenu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ziheng.system.sysmenu.domain.SysMenu;
-import com.ziheng.system.sysmenu.domain.vo.SysMenuVO;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +16,13 @@ import java.util.List;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     List<SysMenu> findMenuTreeByUserId(Long userId);
+
+    /**
+     * 根据用户id查询权限列表
+     * @param userId
+     * @return
+     */
+    List<String> findPermissionsByUserId(@Param("userId") Long userId);
 }
 
 

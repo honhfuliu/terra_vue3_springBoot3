@@ -3,6 +3,9 @@ package com.ziheng.system.sysuser.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ziheng.system.sysuser.domain.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -10,8 +13,27 @@ import org.apache.ibatis.annotations.Mapper;
 * @createDate 2026-06-12 17:10:57
 * @Entity generator.domain.SysUser
 */
-@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
+
+    /**
+     * 删除用户的角色关联
+     * @param userId 用户ID
+     */
+    void deleteUserRole(@Param("userId") Long userId);
+
+    /**
+     * 批量插入用户角色关联
+     * @param userId 用户ID
+     * @param roleIds 角色ID集合
+     */
+    void insertUserRole(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
+
+    /**
+     * 查询用户拥有的角色ID集合
+     * @param userId 用户ID
+     * @return 角色ID集合
+     */
+    List<Long> selectRoleIdsByUserId(@Param("userId") Long userId);
 
 }
 

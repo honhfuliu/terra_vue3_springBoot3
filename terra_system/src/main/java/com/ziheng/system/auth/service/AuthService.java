@@ -5,6 +5,4 @@ import com.ziheng.system.auth.domain.vo.LoginVo;
 
 public interface AuthService {
     LoginVo login(LoginBody loginBody);
-
-    boolean validatePassword(String inputPassword, String storedPassword, String salt);
 }

@@ -1,83 +1,59 @@
 package com.ziheng.system.sysuser.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ziheng.system.sysuser.domain.SysUser;
+import lombok.Data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
+@Data
 public class SysUserVo {
+    /**
+     * 用户ID
+     */
     private Long userId;
+    /**
+     * 用户名称
+     */
     private String username;
+    /**
+     * 用户昵称
+     */
     private String nickname;
-    private String email;
+    /**
+     * 手机号
+     */
     private String phone;
-    private Integer status;
+    /**
+     * 部门ID
+     */
+    private Long deptId;
+    /**
+     * 部门名称
+     */
+    private String deptName;
+    /**
+     * 状态：0禁用 1正常
+     */
+    private String status;
+    /**
+     * 创建时间（yyyy-MM-dd HH:mm:ss）
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
+
+
 
     public static SysUserVo from(SysUser user) {
         SysUserVo vo = new SysUserVo();
         vo.setUserId(user.getUserId());
         vo.setUsername(user.getUsername());
         vo.setNickname(user.getNickname());
-        vo.setEmail(user.getEmail());
         vo.setPhone(user.getPhone());
+        vo.setDeptId(user.getDeptId());
         vo.setStatus(user.getStatus());
         vo.setCreateTime(user.getCreateTime());
         return vo;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 }

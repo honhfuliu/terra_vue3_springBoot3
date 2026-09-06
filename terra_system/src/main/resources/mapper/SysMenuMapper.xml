@@ -29,7 +29,23 @@
         update_time,del_flag
     </sql>
     <select id="findMenuTreeByUserId" resultType="com.ziheng.system.sysmenu.domain.SysMenu">
-        select distinct menu_id, menu_name, parent_id, menu_sort, path, component,menu_type,visible,status,perms,icon
-        from sys_menu where menu_type in ('M','C') and status = '1' ORDER BY parent_id, menu_sort;
+        select distinct menu_id, menu_name, parent_id, menu_sort,name, path, component,menu_type,visible,status,perms,icon
+        from sys_menu where menu_type in ('M','C') and status = '1' and del_flag = '0' ORDER BY parent_id, menu_sort;
+    </select>
+    <select id="findPermissionsByUserId" resultType="java.lang.String">
+        select distinct perms
+        from sys_menu
+        where menu_id in
+              (select menu_id
+               from sys_role_menu
+               where role_id in (select sr.role_id
+                                 from sys_user_role sur
+                                          join sys_role sr on sur.role_id = sr.role_id
+                                 where sr.status = '1'
+                                   and sr.del_flag = '0'
+                                   and sur.user_id = #{userId}))
+          and status = '1'
+          and menu_type IN ('C', 'F')
+          and del_flag = '0';
     </select>
 </mapper>

@@ -22,16 +22,22 @@
         <spring-boot.version>3.5.11</spring-boot.version>
         <mybatis-plus-spring-boot.version>3.5.16</mybatis-plus-spring-boot.version>
         <druid.version>1.2.28</druid.version>
-        <pagehelper.boot.version>2.1.1</pagehelper.boot.version>
-        <hutool.version>5.7.5</hutool.version>
         <mysql.version>8.0.31</mysql.version>
         <knife4j.version>4.4.0</knife4j.version>
         <sa-token.version>1.45.0</sa-token.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
+        <hutool.version>5.8.38</hutool.version>
+        <!-- EasyExcel -->
+        <easyexcel.version>3.3.2</easyexcel.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
             <!-- SpringBoot的依赖配置-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -40,19 +46,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- ==================== EasyExcel ==================== -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
 
             <!-- 阿里数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.version}</version>
-            </dependency>
-
-            <!-- pagehelper 分页插件 -->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.boot.version}</version>
             </dependency>
 
             <!--mybatis-plus-->
@@ -82,18 +87,6 @@
             </dependency>
 
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-
-            <!-- Sa-Token -->
-<!--            <dependency>-->
-<!--                <groupId>cn.dev33</groupId>-->
-<!--                <artifactId>sa-token-spring-boot3-starter</artifactId>-->
-<!--                <version>${sa-token.version}</version>-->
-<!--            </dependency>-->
-            <dependency>
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-spring-boot3-starter</artifactId>
                 <version>${sa-token.version}</version>
@@ -109,6 +102,13 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${commons-pool2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.26</version>
+                <optional>true</optional>
             </dependency>
 
         </dependencies>

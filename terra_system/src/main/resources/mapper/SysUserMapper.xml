@@ -12,15 +12,37 @@
             <result property="salt" column="salt" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="sex" column="sex" jdbcType="CHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="deptId" column="dept_id" jdbcType="BIGINT"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="CHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        user_id,username,nickname,
-        password,salt,email,
-        phone,status,create_time,
-        update_time
+        user_id,dept_id,username,nickname,
+        password,salt,email,phone,
+        sex,status,remark,create_time,
+        update_time,del_flag
     </sql>
+
+    <!-- 删除用户的角色关联 -->
+    <delete id="deleteUserRole">
+        DELETE FROM sys_user_role WHERE user_id = #{userId}
+    </delete>
+
+    <!-- 批量插入用户角色关联 -->
+    <insert id="insertUserRole">
+        INSERT INTO sys_user_role (user_id, role_id) VALUES
+        <foreach collection="roleIds" item="roleId" separator=",">
+            (#{userId}, #{roleId})
+        </foreach>
+    </insert>
+
+    <!-- 查询用户拥有的角色ID集合 -->
+    <select id="selectRoleIdsByUserId" resultType="java.lang.Long">
+        SELECT role_id FROM sys_user_role WHERE user_id = #{userId}
+    </select>
 </mapper>

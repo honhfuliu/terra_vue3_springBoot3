@@ -21,6 +21,7 @@ knife4j:
   enable: true
   setting:
     language: zh_cn
+# redis配置
 spring:
   data:
     redis:
@@ -28,12 +29,20 @@ spring:
       port: 6379
       password:
       database: 0
-      timeout: 10000ms
+      timeout: 10s
+      lettuce:
+        pool:
+          max-active: 200
+          max-wait: -1ms
+          max-idle: 10
+          min-idle: 0
+
 
 # Sa-Token 配置
 sa-token:
+  token-prefix: Bearer
   token-name: Authorization
-  timeout: 600
+  timeout: 60000
   active-timeout: 1800
   is-concurrent: false
   is-share: false

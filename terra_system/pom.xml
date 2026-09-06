@@ -18,32 +18,37 @@
     </properties>
 
     <dependencies>
+        <!-- ==================== Common ==================== -->
         <dependency>
             <groupId>com.ziheng</groupId>
             <artifactId>terra_common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- ==================== framework ==================== -->
         <dependency>
             <groupId>com.ziheng</groupId>
             <artifactId>terra_framework</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- ==================== MySQL ==================== -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
         </dependency>
+        <!-- ==================== Lombok ==================== -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- ==================== Test ==================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-        </dependency>
+
     </dependencies>
 
 </project>
